@@ -1,0 +1,55 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Anandh",
+      "userId": "anandha@scripbox.com"
+    },
+    {
+      "id": 2,
+      "name": "Sanjay",
+      "userId": "sanjay@scripbox.com"
+    },
+    {
+      "id": 3,
+      "name": "Naveen",
+      "userId": "naveen@scripbox.com"
+    },
+    {
+      "id": 4,
+      "name": "Dinesh",
+      "userId": "dinesh@scripbox.com"
+    },
+    {
+      "id": 1,
+      "name": "Ajith",
+      "userId": "ajith@scripbox.com"
+    }
+  ],
+  "challenges": [
+    {
+      "title": "Collaborate",
+      "description": "Test",
+      "tag": "Tech",
+      "id": "1212",
+      "createdById": "anandha@scripbox.com",
+      "createdByName": "Anandh",
+      "vote": [
+        "anandha@scripbox.com",
+        "naveen@scripbox.com"
+      ]
+    },
+    {
+      "title": "test",
+      "description": "test",
+      "tag": "Cloud",
+      "id": "K5PGcGi",
+      "createdById": "anandha@scripbox.com",
+      "createdByName": "Anandh",
+      "vote": [
+        "anandha@scripbox.com",
+        "naveen@scripbox.com"
+      ]
+    }
+  ]
+}
