@@ -35,8 +35,8 @@
       "createdById": "anandha@scripbox.com",
       "createdByName": "Anandh",
       "vote": [
-        "anandha@scripbox.com",
-        "naveen@scripbox.com"
+        "naveen@scripbox.com",
+        "anandha@scripbox.com"
       ]
     },
     {
@@ -47,9 +47,17 @@
       "createdById": "anandha@scripbox.com",
       "createdByName": "Anandh",
       "vote": [
-        "anandha@scripbox.com",
         "naveen@scripbox.com"
       ]
+    },
+    {
+      "title": "test",
+      "description": "test",
+      "tag": "AI-ML",
+      "id": "5952922a-66be-4244-a253-e057cedc73cf",
+      "createdById": "naveen@scripbox.com",
+      "createdByName": "Naveen",
+      "vote": []
     }
   ]
 }

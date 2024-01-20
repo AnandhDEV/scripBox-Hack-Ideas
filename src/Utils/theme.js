@@ -23,13 +23,12 @@ export let theme = createTheme({
   palette: {
     mode: "light",
     primary: {
-      main: "#96C2DB",
-      light: "#F2D4D6",
+      main: "#12232E",
       contrastText: "#fff",
     },
     secondary: {
-      main: "#FFFFF",
-      contrastText: "#000",
+      main: "#007CC7",
+      contrastText: "#fff",
     },
     error: {
       light: "#FF6166",

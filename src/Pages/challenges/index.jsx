@@ -6,7 +6,7 @@ import {
   DialogContentText,
   DialogTitle,
 } from "@mui/material";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import ListView from "./listView";
 import { addChallenges, fetchChallenges } from "../../Store/challenges";
 import FormContainer from "./formContainer";
@@ -15,6 +15,7 @@ import PreLoader from "../../Component/backDropLoader";
 import CustomSnackBar from "../../Component/SnackBar";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth } from "../../Hooks/useAuth";
+import { unwrapResult } from "@reduxjs/toolkit";
 
 const initialChallenge = {
   title: "",
@@ -38,12 +39,6 @@ const successAddSnack = {
   severity: "success",
 };
 
-const successUpdateSnack = {
-  openSnack: true,
-  message: "Vote Added",
-  severity: "success",
-};
-
 const errorSnack = {
   openSnack: true,
   message: "Something went wrong",
@@ -53,13 +48,18 @@ const errorSnack = {
 function Challenge() {
   const dispatch = useDispatch();
 
+  const [loader, setLoader] = useState(true);
   useEffect(() => {
-    dispatch(fetchChallenges());
+    dispatch(fetchChallenges())
+      .then(unwrapResult)
+      .then(() => {
+        setLoader(false);
+      });
   }, []);
 
   const { userName, userId } = useAuth();
 
-  const { challengeList, loader } = useSelector((state) => state.challenges);
+  const { challengeList } = useSelector((state) => state.challenges);
   const [open, setOpen] = React.useState(false);
   const [formData, setFormData] = useState(initialChallenge);
   const [error, setError] = useState(false);
@@ -106,7 +106,15 @@ function Challenge() {
         createdByName: userName,
       };
 
-      dispatch(addChallenges(payload));
+      dispatch(addChallenges(payload))
+        .then(unwrapResult)
+        .then(() => {
+          handleReset();
+          setSnack(successAddSnack);
+        })
+        .catch(() => {
+          setSnack(errorSnack);
+        });
     } else {
       setError(true);
     }
@@ -114,8 +122,7 @@ function Challenge() {
 
   return (
     <>
-      {/* <PreLoader open={loader} /> */}
-
+      <PreLoader open={loader} />
       <ListView rows={challengeList} handleAdd={handleAdd} />
       <Dialog
         open={open}
@@ -138,8 +145,10 @@ function Challenge() {
           />
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Cancel</Button>
-          <Button type="submit" variant="contained">
+          <Button onClick={handleClose} color="primary">
+            Cancel
+          </Button>
+          <Button type="submit" variant="contained" color="secondary">
             Submit
           </Button>
         </DialogActions>

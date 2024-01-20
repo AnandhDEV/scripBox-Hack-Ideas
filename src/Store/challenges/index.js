@@ -5,7 +5,6 @@ import { DomainURL } from "../../Utils/constants";
 const initialState = {
   users: [],
   challengeList: [],
-  loader: false,
 };
 
 export const fetchChallenges = createAsyncThunk(
@@ -48,16 +47,9 @@ const chanllengesSlice = createSlice({
   extraReducers(builder) {
     builder.addCase(fetchChallenges.fulfilled, (state, action) => {
       state.challengeList = action.payload;
-      state.loader = false;
     });
     builder.addCase(fetchUsers.fulfilled, (state, action) => {
       state.users = action.payload;
-    });
-    builder.addCase(fetchChallenges.pending, (state, action) => {
-      state.loader = true;
-    });
-    builder.addCase(fetchChallenges.rejected, (state, action) => {
-      state.loader = false;
     });
   },
 });

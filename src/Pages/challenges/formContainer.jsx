@@ -1,17 +1,13 @@
 import {
   Box,
-  Button,
   FormControl,
   FormHelperText,
   InputLabel,
   MenuItem,
   Select,
-  Stack,
   TextField,
-  Typography,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { useSelector } from "react-redux";
 import { tagsList } from "../../Utils/constants";
 
 const CustomFormContainer = styled(Box)(({ theme }) => ({

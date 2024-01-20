@@ -26,7 +26,11 @@ const columns = [
     headerName: "Title",
     renderCell: ({ value }) => {
       return (
-        <Typography sx={{ fontWeight: "600" }} variant="subtitle2">
+        <Typography
+          sx={{ fontWeight: "600" }}
+          variant="subtitle2"
+          color={"#36454F"}
+        >
           {value}
         </Typography>
       );
@@ -59,7 +63,7 @@ const columns = [
         >
           <Box sx={{ display: "flex", alignItems: "center" }}>
             {renderAvatar(row)}
-            <Typography sx={{ fontWeight: "600" }}>
+            <Typography sx={{ fontWeight: "600" }} color={"#36454F"}>
               {row.createdByName}
             </Typography>
             <br></br>
@@ -75,7 +79,9 @@ const columns = [
     headerName: "Tag",
     field: "tag",
     renderCell: ({ row }) => {
-      return <Chip size="small" label={row.tag} skin="light" color="primary" />;
+      return (
+        <Chip size="small" label={row.tag} skin="light" color="secondary" />
+      );
     },
   },
   {
@@ -86,26 +92,35 @@ const columns = [
     renderCell: ({ row }) => {
       return <VoteComponent row={row} />;
     },
+    sortComparator: (v1, v2) => {
+      return v2?.length ?? 0 - v1.length ?? 0;
+    },
   },
 ];
 
 const renderAvatar = (row) => {
   const stateNum = Math.floor(Math.random() * 6);
+
   const states = [
-    "success",
-    "error",
-    "warning",
-    "info",
-    "primary",
-    "secondary",
+    "success.main",
+    "error.main",
+    "warning.main",
+    "info.main",
+    "primary.main",
+    "secondary.main",
   ];
   const color = states[stateNum];
 
   return (
     <Avatar
       skin="light"
-      color={color}
-      sx={{ mr: 1, width: 30, height: 30, fontSize: ".875rem" }}
+      sx={{
+        mr: 1,
+        width: 30,
+        height: 30,
+        fontSize: ".875rem",
+        bgcolor: color,
+      }}
     >
       {row?.createdByName?.charAt(0).toUpperCase()}
     </Avatar>
@@ -151,7 +166,12 @@ export default function ListView({ rows, handleAdd }) {
           }}
         />
 
-        <Button variant="contained" size="small" onClick={handleAdd}>
+        <Button
+          variant="contained"
+          size="small"
+          onClick={handleAdd}
+          color="secondary"
+        >
           CREATE CHALLENGE
         </Button>
       </Stack>
@@ -162,7 +182,7 @@ export default function ListView({ rows, handleAdd }) {
         rows={filteredRow ?? []}
         columns={columns}
         disableRowSelectionOnClick
-        localeText={{ noRowsLabel: "No Users" }}
+        localeText={{ noRowsLabel: "No Challenges" }}
       />
     </Card>
   );
@@ -170,7 +190,7 @@ export default function ListView({ rows, handleAdd }) {
 
 function VoteComponent({ row }) {
   const dispatch = useDispatch();
-  const { userId, userName } = useAuth();
+  const { userId } = useAuth();
 
   const isVoted = !!row?.vote?.find((item) => item === userId);
 
@@ -189,7 +209,7 @@ function VoteComponent({ row }) {
       {isVoted ? (
         <ThumbUpIcon
           onClick={handleVote}
-          color="primary"
+          color="secondary"
           sx={{
             "&:hover": {
               cursor: "pointer",
@@ -200,7 +220,7 @@ function VoteComponent({ row }) {
       ) : (
         <ThumbUpAltOutlinedIcon
           onClick={handleVote}
-          color="primary"
+          color="secondary"
           sx={{
             "&:hover": {
               cursor: "pointer",

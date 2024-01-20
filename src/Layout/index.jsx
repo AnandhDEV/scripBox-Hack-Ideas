@@ -1,13 +1,12 @@
 import { Box, IconButton, Stack, Tooltip } from "@mui/material";
-import React, { useEffect } from "react";
+import React from "react";
 import { styled } from "@mui/material/styles";
 import { Outlet, useNavigate } from "react-router-dom";
 import { Logout } from "@mui/icons-material";
-import { useAuth } from "../Hooks/useAuth";
 
 const SideBar = styled(Box)(({ theme }) => ({
   width: "5%",
-  height: "106vh",
+  height: "108vh",
   backgroundColor: theme.palette.primary.main,
   position: "absolute",
   top: 0,
@@ -44,7 +43,7 @@ function Layout() {
               localStorage.clear();
             }}
           >
-            <Logout color="primary" />
+            <Logout sx={{ color: "primary.contrastText" }} />
           </IconButton>
         </Tooltip>
       </TopBar>

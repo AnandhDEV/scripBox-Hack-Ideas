@@ -14,21 +14,19 @@ function App() {
   }, []);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path={"/login"} element={<Login />}></Route>
-        <Route path={"/"} element={<PrivateOutlet />}>
-          <Route
-            path="challenges"
-            element={
-              <PrivateRoute>
-                <Challenge />
-              </PrivateRoute>
-            }
-          ></Route>
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <Routes>
+      <Route path={"/login"} element={<Login />}></Route>
+      <Route path={"/"} element={<PrivateOutlet />}>
+        <Route
+          path="challenges"
+          element={
+            <PrivateRoute>
+              <Challenge />
+            </PrivateRoute>
+          }
+        ></Route>
+      </Route>
+    </Routes>
   );
 }
 
