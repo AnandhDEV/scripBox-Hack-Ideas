@@ -111,7 +111,7 @@ const Login = () => {
               ></Box>
               <Box sx={{ mb: 6 }}>
                 <TypographyStyled variant="h5">
-                  Welcome to Challenges
+                  Welcome to Hack Ideas
                 </TypographyStyled>
                 <Typography variant="body2">
                   Please sign-in to your account
